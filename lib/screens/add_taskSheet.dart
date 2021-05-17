@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey/models/task_data.dart';
 
-class AddTaskSheet extends StatelessWidget {
+class AddTaskSheet extends StatefulWidget {
   @override
+  _AddTaskSheetState createState() => _AddTaskSheetState();
+}
+
+class _AddTaskSheetState extends State<AddTaskSheet> {
   String newTaskTile;
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: Color(0xff757575),
@@ -34,7 +39,7 @@ class AddTaskSheet extends StatelessWidget {
             ),
             FlatButton(
               onPressed: (){
-                Provider.of<TaskData>(context).addTask(newTaskTile);
+                Provider.of<TaskData>(context, listen: false).addTask(newTaskTile);
                 Navigator.pop(context);
               },
               child: Text(
